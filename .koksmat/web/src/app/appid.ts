@@ -1,1 +1,1 @@
-export const APPNAME="kubernetes-management"
+export const APPNAME="magicbox-mongodb"

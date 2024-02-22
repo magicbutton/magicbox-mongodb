@@ -11,6 +11,7 @@ package cmds
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"os"
 	"path"
 
@@ -33,6 +34,7 @@ func RestoreListPost(ctx context.Context, args []string) (*schemas.Bloblist, err
 	}
 	resultObject := schemas.Bloblist{}
 	err = json.Unmarshal(data, &resultObject)
+	fmt.Println(string(data))
 	return &resultObject, nil
 
 }

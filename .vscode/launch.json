@@ -9,8 +9,16 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${workspaceFolder}",
+            "program": "${workspaceFolder}/.koksmat/app",
             "args": ["serve"]
+        }, 
+        {
+            "name": "Go - No Params",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/.koksmat/app",
+            "args": [""]
         }, 
     ]
 }
