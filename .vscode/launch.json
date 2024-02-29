@@ -18,7 +18,7 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/.koksmat/app",
-            "args": [""]
+            "args": ["discover", "list"]
         }, 
     ]
 }

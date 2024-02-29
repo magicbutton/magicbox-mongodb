@@ -14,11 +14,11 @@ func main() {
 	s1 := strings.Split(info.Main.Path, "/")
 	name := s1[len(s1)-1]
 	description := `---
-title: kubernetes-management
-description: Describe the main purpose of this kitchen
+title: Magicbox MongoDB
+description: This is a magicbox application for managing MongoDB databases in a Kubernetes environment.
 ---
 
-# Kubernetes Management
+# Magicbox MongoDB
 
 ## Recovery
 The foundation for being able to recover data is to have a backup. We define a timer job which runs as a sidecar to any given POD needing backup. The timer job will run a backup job at a given interval. The backup job will create a backup of the database and store it in an external store.
@@ -44,7 +44,7 @@ The pod will copy the backup from the external storage to the internal storage. 
 
 `
 	magicapp.Setup(".env")
-	magicapp.RegisterServeCmd("kubernetes-management", description, "0.0.1", 8080)
+	magicapp.RegisterServeCmd("magicbox-mongodb", description, "0.0.1", 8080)
 	magicapp.RegisterCmds()
-	magicapp.Execute(name, "kubernetes-management", "")
+	magicapp.Execute(name, "magicbox-mongodb", "")
 }
