@@ -4,9 +4,7 @@
 		"ghcr.io/devcontainers/features/azure-cli:1": {},
 		"ghcr.io/devcontainers/features/powershell:1": {}
 	},
-	"containerEnv": {
-		"KITCHENROOT":"/workspaces"
-	},
+
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -22,6 +20,7 @@
 				"YuTengjing.vscode-archive"
 			]
 		}
-	}
-	
+	},
+	"postCreateCommand": "go install github.com/koksmat-com/koksmat@v2.0.0.6 && declare -x KITCHENROOT=/workspaces && declare -x NIELS=koksmat",
+
 	}
