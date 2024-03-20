@@ -21,7 +21,8 @@ func AddEndpoints(s *web.Service, jwtAuth func(http.Handler) http.Handler) {
 			//r.Method(http.MethodPost, "/", nethttp.NewHandler(ExchangeCreateRoomsPost()))
 			r.Method(http.MethodPost, "/health/ping", nethttp.NewHandler(HealthPingPost()))
 			r.Method(http.MethodPost, "/health/coreversion", nethttp.NewHandler(HealthCoreversionPost()))
-			r.Method(http.MethodPost, "/discover/discover", nethttp.NewHandler(DiscoverDiscoverPost()))
+			r.Method(http.MethodPost, "/magic/backup", nethttp.NewHandler(MagicBackupPost()))
+			r.Method(http.MethodPost, "/discover/databases", nethttp.NewHandler(DiscoverDatabasesPost()))
 			r.Method(http.MethodPost, "/connect/connectionstrings", nethttp.NewHandler(ConnectConnectionstringsPost()))
 			r.Method(http.MethodPost, "/connect/forward", nethttp.NewHandler(ConnectForwardPost()))
 			r.Method(http.MethodPost, "/backup/all", nethttp.NewHandler(BackupAllPost()))
@@ -29,6 +30,7 @@ func AddEndpoints(s *web.Service, jwtAuth func(http.Handler) http.Handler) {
 			r.Method(http.MethodPost, "/restore/download", nethttp.NewHandler(RestoreDownloadPost()))
 			r.Method(http.MethodPost, "/restore/unarchive", nethttp.NewHandler(RestoreUnarchivePost()))
 			r.Method(http.MethodPost, "/restore/listtar", nethttp.NewHandler(RestoreListtarPost()))
+			r.Method(http.MethodPost, "/provision/appdeployproduction", nethttp.NewHandler(ProvisionAppdeployproductionPost()))
 
 		})
 	})

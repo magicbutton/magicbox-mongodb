@@ -3,7 +3,7 @@ title: Database Discovery
 description: Discover databases in the cluster
 connection: sharepoint
 api: post
-tag: discover
+tag: databases
 output: databaseservices.json
 ---#>
 if ($env:WORKDIR -eq $null) {
@@ -19,7 +19,7 @@ foreach ($item in $services.items) {
     if ($match -eq "True") {
         $result += $item
         $databaseservices += @{
-            name = $item.metadata.name
+            name      = $item.metadata.name
             namespace = $item.metadata.namespace
            
         }

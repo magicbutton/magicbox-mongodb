@@ -43,23 +43,42 @@ func RegisterCmds() {
 	healthCmd.AddCommand(HealthCoreversionPostCmd)
 
 	RootCmd.AddCommand(healthCmd)
+	magicCmd := &cobra.Command{
+		Use:   "magic",
+		Short: "Magic Buttons",
+		Long:  `Everything you need to be able to do to deploy, use and operate MongoDB on the Magicbox platform`,
+	}
+	MagicBackupPostCmd := &cobra.Command{
+		Use:   "backup ",
+		Short: "Backup All",
+		Long:  ``,
+		Args:  cobra.MinimumNArgs(0),
+		Run: func(cmd *cobra.Command, args []string) {
+			ctx := cmd.Context()
+
+			cmds.MagicBackupPost(ctx, args)
+		},
+	}
+	magicCmd.AddCommand(MagicBackupPostCmd)
+
+	RootCmd.AddCommand(magicCmd)
 	discoverCmd := &cobra.Command{
 		Use:   "discover",
 		Short: "Discovery",
 		Long:  `Everything you need to be able to do to deploy, use and operate MongoDB on the Magicbox platform`,
 	}
-	DiscoverDiscoverPostCmd := &cobra.Command{
-		Use:   "discover ",
+	DiscoverDatabasesPostCmd := &cobra.Command{
+		Use:   "databases ",
 		Short: "Database Discovery",
 		Long:  `Discover databases in the cluster`,
 		Args:  cobra.MinimumNArgs(0),
 		Run: func(cmd *cobra.Command, args []string) {
 			ctx := cmd.Context()
 
-			cmds.DiscoverDiscoverPost(ctx, args)
+			cmds.DiscoverDatabasesPost(ctx, args)
 		},
 	}
-	discoverCmd.AddCommand(DiscoverDiscoverPostCmd)
+	discoverCmd.AddCommand(DiscoverDatabasesPostCmd)
 
 	RootCmd.AddCommand(discoverCmd)
 	connectCmd := &cobra.Command{
@@ -175,4 +194,23 @@ func RegisterCmds() {
 	restoreCmd.AddCommand(RestoreListtarPostCmd)
 
 	RootCmd.AddCommand(restoreCmd)
+	provisionCmd := &cobra.Command{
+		Use:   "provision",
+		Short: "Provision",
+		Long:  `Everything you need to be able to do to deploy, use and operate MongoDB on the Magicbox platform`,
+	}
+	ProvisionAppdeployproductionPostCmd := &cobra.Command{
+		Use:   "appdeployproduction ",
+		Short: "App deploy to production",
+		Long:  ``,
+		Args:  cobra.MinimumNArgs(0),
+		Run: func(cmd *cobra.Command, args []string) {
+			ctx := cmd.Context()
+
+			cmds.ProvisionAppdeployproductionPost(ctx, args)
+		},
+	}
+	provisionCmd.AddCommand(ProvisionAppdeployproductionPostCmd)
+
+	RootCmd.AddCommand(provisionCmd)
 }
