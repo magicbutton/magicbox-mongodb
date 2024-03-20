@@ -16,14 +16,14 @@ WORKDIR /kitchens/magicbox-mongodb
 # so that is why we copy the entire project to the container
 
 
-RUN go install github.com/koksmat-com/koksmat@v2.0.0.7
+RUN go install github.com/koksmat-com/koksmat@v2.0.0.8
 
 COPY . .  
 WORKDIR /kitchens/magicbox-mongodb/.koksmat/app
 
 RUN go install
 
-
+RUN koksmat context init sharepoint
 
 
 CMD [ "sleep","infinity"]
