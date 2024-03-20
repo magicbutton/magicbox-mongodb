@@ -44,6 +44,6 @@ func RestoreListPost() usecase.Interactor {
 	})
 	u.SetTitle("List backup blobs")
 	// u.SetExpectedErrors(status.InvalidArgument)
-	u.SetTags("Backup")
+	u.SetTags("Restore")
 	return u
 }

@@ -44,6 +44,6 @@ func DiscoverDiscoverPost() usecase.Interactor {
 	})
 	u.SetTitle("Database Discovery")
 	// u.SetExpectedErrors(status.InvalidArgument)
-	u.SetTags("Disover")
+	u.SetTags("Discovery")
 	return u
 }

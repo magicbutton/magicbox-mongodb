@@ -5,4 +5,3 @@ type Bloblist []struct {
 	Name         string `json:"name"`
 	Size         int    `json:"size"`
 }
-

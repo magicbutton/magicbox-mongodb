@@ -23,10 +23,11 @@ import (
 
 func RestoreListtarPost() usecase.Interactor {
 	type Request struct {
+		Database string `query:"database" binding:"required"`
 	}
 	u := usecase.NewInteractor(func(ctx context.Context, input Request, output *schemas.Backupcontent) error {
 
-		_, err := execution.ExecutePowerShell("john", "*", "magicbox-mongodb", "30-restore", "57-listtarfile.ps1", "")
+		_, err := execution.ExecutePowerShell("john", "*", "magicbox-mongodb", "30-restore", "57-listtarfile.ps1", "", "-database", input.Database)
 		if err != nil {
 			return err
 		}
@@ -44,6 +45,6 @@ func RestoreListtarPost() usecase.Interactor {
 	})
 	u.SetTitle("Database Restore")
 	// u.SetExpectedErrors(status.InvalidArgument)
-	u.SetTags("Backup")
+	u.SetTags("Restore")
 	return u
 }

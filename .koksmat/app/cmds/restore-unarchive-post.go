@@ -12,14 +12,16 @@ import (
 	"context"
 
 	"github.com/365admin/magicbox-mongodb/execution"
+	"github.com/365admin/magicbox-mongodb/utils"
 )
 
 func RestoreUnarchivePost(ctx context.Context, args []string) (*string, error) {
 
-	_, pwsherr := execution.ExecutePowerShell("john", "*", "magicbox-mongodb", "30-restore", "40-unarchive.ps1", "")
+	result, pwsherr := execution.ExecutePowerShell("john", "*", "magicbox-mongodb", "30-restore", "40-unarchive.ps1", "", "-database", args[0])
 	if pwsherr != nil {
 		return nil, pwsherr
 	}
+	utils.PrintSkip2FirstAnd2LastLines(string(result))
 	return nil, nil
 
 }

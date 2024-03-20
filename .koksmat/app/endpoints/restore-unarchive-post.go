@@ -18,10 +18,11 @@ import (
 
 func RestoreUnarchivePost() usecase.Interactor {
 	type Request struct {
+		Database string `query:"database" binding:"required"`
 	}
 	u := usecase.NewInteractor(func(ctx context.Context, input Request, output *string) error {
 
-		_, err := execution.ExecutePowerShell("john", "*", "magicbox-mongodb", "30-restore", "40-unarchive.ps1", "")
+		_, err := execution.ExecutePowerShell("john", "*", "magicbox-mongodb", "30-restore", "40-unarchive.ps1", "", "-database", input.Database)
 		if err != nil {
 			return err
 		}
@@ -31,6 +32,6 @@ func RestoreUnarchivePost() usecase.Interactor {
 	})
 	u.SetTitle("Database Restore")
 	// u.SetExpectedErrors(status.InvalidArgument)
-	u.SetTags("Backup")
+	u.SetTags("Restore")
 	return u
 }

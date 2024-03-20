@@ -11,6 +11,7 @@ package cmds
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"os"
 	"path"
 
@@ -21,7 +22,7 @@ import (
 
 func RestoreListtarPost(ctx context.Context, args []string) (*schemas.Backupcontent, error) {
 
-	_, pwsherr := execution.ExecutePowerShell("john", "*", "magicbox-mongodb", "30-restore", "57-listtarfile.ps1", "")
+	result, pwsherr := execution.ExecutePowerShell("john", "*", "magicbox-mongodb", "30-restore", "57-listtarfile.ps1", "", "-database", args[0])
 	if pwsherr != nil {
 		return nil, pwsherr
 	}
@@ -33,6 +34,11 @@ func RestoreListtarPost(ctx context.Context, args []string) (*schemas.Backupcont
 	}
 	resultObject := schemas.Backupcontent{}
 	err = json.Unmarshal(data, &resultObject)
-	return &resultObject, nil
+	if utils.Output == "json" {
+		fmt.Println(string(data))
+	}
+	utils.PrintSkip2FirstAnd2LastLines(string(result))
+
+	return nil, nil
 
 }

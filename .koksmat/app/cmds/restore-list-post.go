@@ -22,7 +22,7 @@ import (
 
 func RestoreListPost(ctx context.Context, args []string) (*schemas.Bloblist, error) {
 
-	_, pwsherr := execution.ExecutePowerShell("john", "*", "magicbox-mongodb", "30-restore", "10-bloblist.ps1", "")
+	result, pwsherr := execution.ExecutePowerShell("john", "*", "magicbox-mongodb", "30-restore", "10-bloblist.ps1", "")
 	if pwsherr != nil {
 		return nil, pwsherr
 	}
@@ -34,7 +34,11 @@ func RestoreListPost(ctx context.Context, args []string) (*schemas.Bloblist, err
 	}
 	resultObject := schemas.Bloblist{}
 	err = json.Unmarshal(data, &resultObject)
-	fmt.Println(string(data))
-	return &resultObject, nil
+	if utils.Output == "json" {
+		fmt.Println(string(data))
+	}
+	utils.PrintSkip2FirstAnd2LastLines(string(result))
+
+	return nil, nil
 
 }

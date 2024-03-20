@@ -11,6 +11,7 @@ package cmds
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"os"
 	"path"
 
@@ -21,7 +22,7 @@ import (
 
 func DiscoverDiscoverPost(ctx context.Context, args []string) (*schemas.Databaseservices, error) {
 
-	_, pwsherr := execution.ExecutePowerShell("john", "*", "magicbox-mongodb", "05-discover", "10 database discover.ps1", "")
+	result, pwsherr := execution.ExecutePowerShell("john", "*", "magicbox-mongodb", "05-discover", "10 database discover.ps1", "")
 	if pwsherr != nil {
 		return nil, pwsherr
 	}
@@ -33,6 +34,11 @@ func DiscoverDiscoverPost(ctx context.Context, args []string) (*schemas.Database
 	}
 	resultObject := schemas.Databaseservices{}
 	err = json.Unmarshal(data, &resultObject)
-	return &resultObject, nil
+	if utils.Output == "json" {
+		fmt.Println(string(data))
+	}
+	utils.PrintSkip2FirstAnd2LastLines(string(result))
+
+	return nil, nil
 
 }

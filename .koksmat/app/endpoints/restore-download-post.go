@@ -46,6 +46,6 @@ func RestoreDownloadPost() usecase.Interactor {
 	})
 	u.SetTitle("Download all backups")
 	// u.SetExpectedErrors(status.InvalidArgument)
-	u.SetTags("Backup")
+	u.SetTags("Restore")
 	return u
 }

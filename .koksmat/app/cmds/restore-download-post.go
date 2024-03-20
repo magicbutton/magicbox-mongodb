@@ -23,10 +23,11 @@ func RestoreDownloadPost(ctx context.Context, body []byte, args []string) (*stri
 		return nil, inputErr
 	}
 
-	_, pwsherr := execution.ExecutePowerShell("john", "*", "magicbox-mongodb", "30-restore", "20-download-all.ps1", "")
+	result, pwsherr := execution.ExecutePowerShell("john", "*", "magicbox-mongodb", "30-restore", "20-download-all.ps1", "")
 	if pwsherr != nil {
 		return nil, pwsherr
 	}
+	utils.PrintSkip2FirstAnd2LastLines(string(result))
 	return nil, nil
 
 }

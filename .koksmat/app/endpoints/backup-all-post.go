@@ -23,7 +23,8 @@ import (
 
 func BackupAllPost() usecase.Interactor {
 	type Request struct {
-		Body schemas.Databaseservices `json:"body" binding:"required"`
+		Upload string                   `query:"upload" binding:"required"`
+		Body   schemas.Databaseservices `json:"body" binding:"required"`
 	}
 	u := usecase.NewInteractor(func(ctx context.Context, input Request, output *string) error {
 		body, inputErr := json.Marshal(input.Body)
@@ -36,7 +37,7 @@ func BackupAllPost() usecase.Interactor {
 			return inputErr
 		}
 
-		_, err := execution.ExecutePowerShell("john", "*", "magicbox-mongodb", "10-backup", "20 backup-all.ps1", "")
+		_, err := execution.ExecutePowerShell("john", "*", "magicbox-mongodb", "10-backup", "20 backup-all.ps1", "", "-upload", input.Upload)
 		if err != nil {
 			return err
 		}
